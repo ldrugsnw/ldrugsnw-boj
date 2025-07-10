@@ -1,38 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                      :::    :::    :::     */
+/*   Problem Number: 15654                             :+:    :+:      :+:    */
+/*                                                    +:+    +:+        +:+   */
+/*   By: ldrugsnw <boj.kr/u/ldrugsnw>                +#+    +#+          +#+  */
+/*                                                  +#+      +#+        +#+   */
+/*   https://boj.kr/15654                          #+#        #+#      #+#    */
+/*   Solved: 2025/07/10 14:26:46 by ldrugsnw      ###          ###   ##.kr    */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
+
 #define MAX 9
 
-int N,M;
-int first[MAX];
 int arr[MAX];
-bool visited[MAX];
+bool isUsed[MAX];
+int input_arr[MAX];
 
-void dfs(int num, int k) { //현재 위치
-    if(k==M) { //목표인 M까지 도달했다면
-        for(auto i =0;i<M;i++)
-            cout << arr[i] << " "; //arr에 저장한 값 M개 만큼 출력
+int n, m;
+
+void func(int cnt)
+{
+    if (cnt == m)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            cout << arr[i] << ' ';
+        }
         cout << "\n";
-    }else { //목표에 도달하지 않았다면
-        for(auto i=1; i<=N;i++) { //★
-            if(!visited[i]) { //방문 안 했다면
-                visited[i]=true; //방문 표시
-                arr[k]=first[i-1]; // 정렬한 N값을 arr에 저장
-                dfs(i+1,k+1); //더 깊게 들어가자. (M까지)
-                visited[i]=false; //백트래킹 설정 
-            }
+        return;
+    }
+
+    for (int i = 0; i < n; i++)  // 0부터 n-1까지
+    {
+        if (!isUsed[i])
+        {
+            arr[cnt] = input_arr[i];
+            isUsed[i] = true;
+            func(cnt + 1);
+            isUsed[i] = false;
         }
     }
 }
 
-int main() {
-    cin >> N >> M;
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-    for(int i=0;i<N;i++)
-        cin >> first[i];
-    
-    sort(first,first+N); //정렬
+    cin >> n >> m;
 
-    dfs(1,0);
+    for(int i = 0; i < n; i++){
+        cin >> input_arr[i];
+    }
+
+    sort(input_arr, input_arr + n);
+
+    func(0);
 }
