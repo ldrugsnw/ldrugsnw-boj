@@ -26,3 +26,6 @@
 
  <p>첫째 줄에 문제의 정답을 출력한다.</p>
 
+ <img width="569" height="315" alt="image" src="https://github.com/user-attachments/assets/9db97aec-7180-45ca-9aba-f2661e4b6ba7" />
+
+
