@@ -1,63 +1,41 @@
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <algorithm>
+#include <vector>
+
 using namespace std;
 
-class Node{
-public:
-    Node()
-    :data(0), parent(nullptr){}
+int n;
+vector<int> adj[1000001];
+int parent[1000001];
 
-    Node* parent;
-    int data;
-    vector<int> connections;
-};
-
-Node* node_list[100001];
+void dfs(int cur){
+    for(int next : adj[cur]){
+        if(parent[cur] == next) continue;
+        parent[next] = cur;
+        dfs(next);
+    }
+}
 
 int main(){
-    int N;
-    cin >> N;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     
-
-    for(int i = 1; i <= N; i++){
-        node_list[i] = new Node();
-    }
+    cin >> n;
     
-    
-    for(int i = 0; i < N-1; i++){
-        int a, b;
-        cin >> a >> b;
-        node_list[a]->connections.push_back(b);
-        node_list[b]->connections.push_back(a);
-    }
-    
-    
-    node_list[1]->data = 1;
-    
-    
-    queue<int> Q;
-    Q.push(1);
-    
-    while(!Q.empty()){
-        int current = Q.front();
-        Q.pop();
+    for(int i = 0 ; i < n - 1 ; i++){
+        int u,v;
+        cin >> u >> v;
         
-        
-        for(int next : node_list[current]->connections){
-          
-            if(node_list[next]->data == 0){
-                node_list[next]->data = next;
-                node_list[next]->parent = node_list[current];
-                Q.push(next);
-            }
-        }
+        adj[v].push_back(u);
+        adj[u].push_back(v);
     }
     
-
-    for(int i = 2; i <= N; i++){
-        cout << node_list[i]->parent->data << '\n';
+    
+    dfs(1);
+    
+    for(int i = 2; i <= n ; i++){
+        cout << parent[i] << "\n";
     }
     
-    return 0;
 }
