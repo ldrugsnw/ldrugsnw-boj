@@ -1,31 +1,35 @@
 #include <iostream>
-#include <stack>
-#include <unordered_map>
+#include <algorithm>
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+#include <vector>
 
-    stack<int> S;
-    unordered_map<int, int> frequency;
+#define fastio cin.tie(0)->sync_with_stdio(0)
 
-    int howManySangGeunCard = 0;
-    cin >> howManySangGeunCard;
-    for (int i = 0; i < howManySangGeunCard; i++) {
-        int num;
-        cin >> num;
-        S.push(num);
-        frequency[num]++;
+int main(){
+    fastio;
+    
+    int N;
+    cin >> N;
+    
+    vector<int> v;
+    
+    int tmp = 0;
+    for(int i = 0 ; i < N ; i++){
+        cin >> tmp;
+        v.push_back(tmp);
     }
-
-    int howManyAnswer = 0;
-    cin >> howManyAnswer;
-    for (int i = 0; i < howManyAnswer; i++) {
-        int num;
-        cin >> num;
-        cout << frequency[num] << " ";
+    
+    sort(v.begin(), v.end());
+    
+    int t;
+    cin >> t;
+    
+    int s;
+    for(int i = 0; i < t; i++){
+        cin >> s;
+        cout << upper_bound(v.begin(), v.end(), s) - lower_bound(v.begin(), v.end(), s) << " ";
     }
-
+    
     return 0;
 }
