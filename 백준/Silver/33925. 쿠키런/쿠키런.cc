@@ -81,67 +81,6 @@ int main(){
         }
     }
     
-    /*for(int i = 0 ; i < N ; i++){
-        if(up[i] == '.' && mid[i] == '.' && down[i] == '.'){ // 아무것도 없는 경우
-            continue;
-        }
-        
-        else if(up[i] == '.' && mid[i] == '.' && down[i] == '^'){ // jump
-            if(J>0){ // 점프 가능
-                J--;
-            }
-            
-            else { // 벽에 부딪혀야해
-                
-            }
-        }
-        
-        else if(up[i] == '.' && mid[i] == '^' && down[i] == '^'){ // double jump
-            
-            if(J == 2 && leftJump >= 2){
-                H -= K;
-                if(H <= 0){
-                    cout << -1 << endl;
-                    return 0;
-                }
-            }
-            
-            else if(J>1){ // 점프 가능
-                J-=2;
-            }
-            
-            
-            
-            else { // 벽에 부딪혀야해
-                H -= K;
-                
-                if(H <= 0){
-                    cout << -1 << endl;
-                    return 0;
-                }
-            }
-        }
-        
-        
-        else if(up[i] == 'v' && mid[i] == 'v' && down[i] == '.'){ // slide
-            if(S>0){ // 슬라이딩 가능
-                S--;
-            }
-            
-            else { // 벽에 부딪혀야해
-                H -= K;
-                
-                if(H <= 0){
-                    cout << -1 << endl;
-                    return 0;
-                }
-            }
-        }
-    }
-    
-    cout << H << endl;
-    */
-    
     cout << H << endl;
     return 0;
 }
